@@ -1,0 +1,6 @@
+agno
+flask
+openai
+pdfplumber
+python-dotenv
+openai-whisper
