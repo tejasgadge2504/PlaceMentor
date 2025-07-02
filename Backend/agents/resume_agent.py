@@ -19,7 +19,7 @@ class ResumeParser:
         try:
             run_response: RunResponse = self.agent.run(
                 '''
-                You are a resume parser. Extract the following in clean structured JSON format:
+                You are a resume parser. Extract the following in clean structured JSON format as below only:
                 {
                     "Full Name": "string",
                     "Email": "string",
@@ -30,7 +30,7 @@ class ResumeParser:
                     "Work Experience": ["string"]
                 }
 
-                Only return the valid JSON object with no additional text or markdown formatting.
+                Only return the valid JSON object with all content in from project and experience section with no additional generated text or markdown formatting.
                 ''',
                 files=[File(filepath=Path(file_path))],
             )

@@ -3,8 +3,11 @@ from werkzeug.utils import secure_filename
 import os
 from agents.resume_agent import ResumeParser
 from typing import Dict, Any
+from flask_cors import CORS
+
 
 app = Flask(__name__)
+CORS(app)
 
 # Configuration
 UPLOAD_FOLDER = 'uploads'
