@@ -4,3 +4,7 @@ openai
 pdfplumber
 python-dotenv
 openai-whisper
+google-genai 
+duckduckgo-search 
+gunicorn
+flask_cors
