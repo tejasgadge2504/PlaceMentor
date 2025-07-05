@@ -1,9 +1,20 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import InterviewSetup from "./pages/dashboard/InterviewSetup";
+import ResumeUploader from "./pages/dashboard/ResumeUpload";
+import StartInterview from "./pages/dashboard/StartInterview";
+import InterviewPage from "./pages/dashboard/InterviewPage";
 
 const App = () => {
-  return <div>
-    <InterviewSetup/>
-  </div>;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<InterviewSetup />} />
+        <Route path="/resume-summary" element={<ResumeUploader/>}/>
+        <Route path="/start-interview" element={<StartInterview/>} />
+        <Route path="/interview-page" element={<InterviewPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
 };
 
 export default App;
