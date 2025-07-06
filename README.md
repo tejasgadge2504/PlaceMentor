@@ -6,6 +6,11 @@
 
 Placementor is an advanced interview preparation platform designed to assist users in practicing and refining their interview skills. Developed during a hackathon, this project utilizes sophisticated AI agents to simulate realistic interview scenarios and provide actionable feedback.
 
+## Flow:
+<p align="center">
+  <img src="Readme_img/flow.png" alt="Demo" width="1000" />
+</p>
+
 ## Table of Contents
 
 - [Features](#features)
@@ -106,10 +111,6 @@ Placementor is an advanced interview preparation platform designed to assist use
 ## Contributing
 
 We welcome contributions to Placementor! If you have any ideas, suggestions, or bug reports, please open an issue or submit a pull request.
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for more details.
 
 ## Developed By
 
