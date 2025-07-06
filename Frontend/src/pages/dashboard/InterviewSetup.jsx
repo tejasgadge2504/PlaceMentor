@@ -53,15 +53,15 @@ export default function InterviewSetup() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 flex flex-col items-center justify-center py-10 px-4">
       <div className="w-full max-w-xl">
         <div className="mb-6 flex items-center justify-between">
-          <Button variant="ghost" className="text-gray-600 hover:text-gray-900">
+          {/* <Button variant="ghost" className="text-gray-600 hover:text-gray-900">
             &lt; Previous
-          </Button>
+          </Button> */}
           <h2 className="text-lg font-semibold text-gray-800">
             Interview Setup
           </h2>
-          <Button variant="ghost" className="text-red-500 hover:text-red-700">
+          {/* <Button variant="ghost" className="text-red-500 hover:text-red-700">
             ✕ Exit
-          </Button>
+          </Button> */}
         </div>
         <Card className="rounded-2xl shadow-lg border-0">
           <CardContent className="p-8 space-y-6">

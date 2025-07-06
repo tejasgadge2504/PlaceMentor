@@ -5,10 +5,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useNavigate } from "react-router-dom";
 
 export default function ResumeUploader() {
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleUpload = async () => {
     if (!file) return;
@@ -28,6 +30,7 @@ export default function ResumeUploader() {
       console.log("Resume uploaded successfully:", response.data);
       // Store the response in localStorage
       localStorage.setItem("ResumeSummary", JSON.stringify(response.data));
+      navigate('/interview-setup');
     } catch (error) {
       console.error("Error uploading resume:", error);
     } finally {
