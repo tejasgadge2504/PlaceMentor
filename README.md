@@ -24,7 +24,6 @@ Placementor is an advanced interview preparation platform designed to assist use
 - [Usage](#usage)
 - [Screenshots](#screenshots)
 - [Contributing](#contributing)
-- [License](#license)
 - [Developed By](#developed-by)
 
 ## Features
@@ -43,14 +42,21 @@ Placementor is an advanced interview preparation platform designed to assist use
 - **Version Control**: Git
 
 ## Agents
+### Resume Parser
 
-### Feedback Agent
-
-- **Purpose**: Evaluates user responses to interview questions and provides constructive feedback.
+- **Purpose**: Extracts structured information from a user's uploaded resume.
 - **Logic**:
-  - Utilizes the Gemini model within the Agno framework to analyze user answers based on structure, clarity, relevance, and impact.
-  - Constructs a prompt that instructs the AI to evaluate answers on a scale of 1 to 10, provide feedback, suggest improvements, and decide if the user should repeat the question.
-  - Processes the AI response to extract and return a structured JSON format containing the score, feedback, corrected answer, and repeat status.
+  - Uses the Gemini model within the Agno framework to parse the resume and extract key details such as full name, email, phone, skills, projects, education, and work experience.
+  - Constructs a prompt that instructs the AI to return the extracted information in a structured JSON format.
+  - Processes the AI response to extract and return the relevant information in the specified format.
+ 
+### Interview Planner
+
+- **Purpose**: Generates a structured interview plan based on the user's resume, target company, role, and interview round.
+- **Logic**:
+  - Uses the Gemini model within the Agno framework to create a list of interview questions tailored to the user's selected parameters.
+  - Constructs a detailed prompt that guides the AI to generate questions simulating a real interview, starting with introductory questions and gradually increasing in difficulty.
+  - Outputs the interview plan in a structured JSON format, ensuring easy integration with other components.
 
 ### Question Fetcher
 
@@ -61,21 +67,14 @@ Placementor is an advanced interview preparation platform designed to assist use
   - Iterates through the interview plan to find and return the question corresponding to the given serial number.
   - Returns an error if the question is not found, ensuring robustness in handling missing data.
 
-### Interview Planner
 
-- **Purpose**: Generates a structured interview plan based on the user's resume, target company, role, and interview round.
+### Feedback Agent
+
+- **Purpose**: Evaluates user responses to interview questions and provides constructive feedback.
 - **Logic**:
-  - Uses the Gemini model within the Agno framework to create a list of interview questions tailored to the user's selected parameters.
-  - Constructs a detailed prompt that guides the AI to generate questions simulating a real interview, starting with introductory questions and gradually increasing in difficulty.
-  - Outputs the interview plan in a structured JSON format, ensuring easy integration with other components.
-
-### Resume Parser
-
-- **Purpose**: Extracts structured information from a user's uploaded resume.
-- **Logic**:
-  - Uses the Gemini model within the Agno framework to parse the resume and extract key details such as full name, email, phone, skills, projects, education, and work experience.
-  - Constructs a prompt that instructs the AI to return the extracted information in a structured JSON format.
-  - Processes the AI response to extract and return the relevant information in the specified format.
+  - Utilizes the Gemini model within the Agno framework to analyze user answers based on structure, clarity, relevance, and impact.
+  - Constructs a prompt that instructs the AI to evaluate answers on a scale of 1 to 10, provide feedback, suggest improvements, and decide if the user should repeat the question.
+  - Processes the AI response to extract and return a structured JSON format containing the score, feedback, corrected answer, and repeat status.
 
 ## Installation
 
