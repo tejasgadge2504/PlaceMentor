@@ -14,24 +14,32 @@ import {
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Code2, User } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { Input } from "@/components/ui/input";
 
 export default function InterviewSetup() {
   const [company, setCompany] = useState("");
+  const [customCompany, setCustomCompany] = useState("");
   const [role, setRole] = useState("");
+  const [customRole, setCustomRole] = useState("");
   const [round, setRound] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const resumeSummary = localStorage.getItem("ResumeSummary");
 
   const handleStartInterview = async () => {
+    const finalCompany = company === "other" ? customCompany : company;
+    const finalRole = role === "other" ? customRole : role;
+
+    if (!finalCompany || !finalRole || !round) return;
+
     setLoading(true);
     try {
       const response = await axios.post(
         "http://127.0.0.1:5000/generate-interview-questions",
         {
           resume_summary: resumeSummary,
-          company,
-          role,
+          company: finalCompany,
+          role: finalRole,
           round,
         }
       );
@@ -53,15 +61,9 @@ export default function InterviewSetup() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 flex flex-col items-center justify-center py-10 px-4">
       <div className="w-full max-w-xl">
         <div className="mb-6 flex items-center justify-between">
-          {/* <Button variant="ghost" className="text-gray-600 hover:text-gray-900">
-            &lt; Previous
-          </Button> */}
           <h2 className="text-lg font-semibold text-gray-800">
             Interview Setup
           </h2>
-          {/* <Button variant="ghost" className="text-red-500 hover:text-red-700">
-            ✕ Exit
-          </Button> */}
         </div>
         <Card className="rounded-2xl shadow-lg border-0">
           <CardContent className="p-8 space-y-6">
@@ -91,9 +93,19 @@ export default function InterviewSetup() {
                     <SelectItem value="Google">Google</SelectItem>
                     <SelectItem value="Amazon">Amazon</SelectItem>
                     <SelectItem value="Microsoft">Microsoft</SelectItem>
+                    <SelectItem value="other">Other</SelectItem>
                   </SelectContent>
                 </Select>
+                {company === "other" && (
+                  <Input
+                    className="mt-2"
+                    placeholder="Enter custom company"
+                    value={customCompany}
+                    onChange={(e) => setCustomCompany(e.target.value)}
+                  />
+                )}
               </div>
+
               {/* Role Select */}
               <div className="space-y-2">
                 <Label
@@ -110,9 +122,19 @@ export default function InterviewSetup() {
                     <SelectItem value="SDE">SDE</SelectItem>
                     <SelectItem value="Intern">Intern</SelectItem>
                     <SelectItem value="Manager">Manager</SelectItem>
+                    <SelectItem value="other">Other</SelectItem>
                   </SelectContent>
                 </Select>
+                {role === "other" && (
+                  <Input
+                    className="mt-2"
+                    placeholder="Enter custom role"
+                    value={customRole}
+                    onChange={(e) => setCustomRole(e.target.value)}
+                  />
+                )}
               </div>
+
               {/* Interview Type Toggle */}
               <div className="space-y-3">
                 <Label
@@ -156,14 +178,27 @@ export default function InterviewSetup() {
                   </ToggleGroupItem>
                 </ToggleGroup>
               </div>
+
               {/* Start Button */}
               <Button
                 className={`w-full h-12 mt-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-xl shadow-lg transform hover:scale-[1.02] transition-all duration-200 ${
-                  !company || !role || !round || loading
+                  !company ||
+                  (company === "other" && !customCompany) ||
+                  !role ||
+                  (role === "other" && !customRole) ||
+                  !round ||
+                  loading
                     ? "opacity-50 cursor-not-allowed transform-none"
                     : ""
                 }`}
-                disabled={!company || !role || !round || loading}
+                disabled={
+                  !company ||
+                  (company === "other" && !customCompany) ||
+                  !role ||
+                  (role === "other" && !customRole) ||
+                  !round ||
+                  loading
+                }
                 onClick={handleStartInterview}
               >
                 {loading ? (
