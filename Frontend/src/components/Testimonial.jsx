@@ -9,64 +9,67 @@ import {
 
 const testimonials = [
   {
-    image: "https://github.com/shadcn.png",
-    name: "John Doe React",
-    userName: "@john_Doe",
-    comment: "This landing page is awesome!",
+    image: "https://api.dicebear.com/7.x/thumbs/svg?seed=Priya",
+    name: "Priya Sinha",
+    userName: "@dev_diaries",
+    comment:
+      "Mock interviews felt so real, I forgot it was AI! Helped me crack my dream role at Amazon.",
   },
   {
-    image: "https://github.com/shadcn.png",
-    name: "John Doe React",
-    userName: "@john_Doe1",
+    image: "https://api.dicebear.com/7.x/thumbs/svg?seed=Kevin",
+    name: "Kevin Mathews",
+    userName: "@codebykevin",
     comment:
-      "Lorem ipsum dolor sit amet,empor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+      "The feedback was 🔥. Clear, concise, and super actionable. Placementor > random prep videos.",
   },
   {
-    image: "https://github.com/shadcn.png",
-    name: "John Doe React",
-    userName: "@john_Doe2",
+    image: "https://api.dicebear.com/7.x/thumbs/svg?seed=Pari",
+    name: "Pari Sharma",
+    userName: "@pixel_pari",
     comment:
-      "Lorem ipsum dolor sit amet,exercitation. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.",
+      "Resume parser saved me HOURS. Didn’t know I had so many weak spots till now 😅.",
   },
   {
-    image: "https://github.com/shadcn.png",
-    name: "John Doe React",
-    userName: "@john_Doe3",
+    image: "https://api.dicebear.com/7.x/thumbs/svg?seed=Akash",
+    name: "Akash Mehta",
+    userName: "@akashloops",
     comment:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+      "Practiced every night before placements. Felt like a cheat code. Highly recommend.",
   },
   {
-    image: "https://github.com/shadcn.png",
-    name: "John Doe React",
-    userName: "@john_Doe4",
+    image: "https://api.dicebear.com/7.x/thumbs/svg?seed=Ananya",
+    name: "Ananya Rao",
+    userName: "@ui_ananya",
     comment:
-      "Lorem ipsum dolor sit amet, tempor incididunt  aliqua. Ut enim ad minim veniam, quis nostrud.",
+      "Finally, a platform that *gets* how different interviews are for different roles. Nailed my UX round!",
   },
   {
-    image: "https://github.com/shadcn.png",
-    name: "John Doe React",
-    userName: "@john_Doe5",
+    image: "https://api.dicebear.com/7.x/thumbs/svg?seed=Shiv",
+    name: "Shiv Malhotra",
+    userName: "@buildwithshiv",
     comment:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Loved how it simulated Google-style system design rounds. Feedback was spot on!",
   },
 ];
 
 function Testimonials() {
   return (
-    <section id="testimonials" className="container py-24 sm:py-32">
-      <h2 className="text-3xl md:text-4xl font-bold">
-        Discover Why
-        <span className="bg-gradient-to-b from-primary/60 to-primary text-[#20B256] bg-clip-text">
-          {" "}
-          People Love{" "}
-        </span>
-        This Landing Page
-      </h2>
+    <section id="testimonials" className="container py-10 sm:py-10">
+      <div className="text-center">
+        <h2 className="text-3xl md:text-4xl font-bold">
+          Discover Why
+          <span className="bg-gradient-to-b from-primary/60 to-primary text-[#20B256] bg-clip-text">
+            {" "}
+            People Love{" "}
+          </span>
+          PlaceMentor
+        </h2>
 
-      <p className="text-xl text-muted-foreground pt-4 pb-8">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non unde error
-        facere hic reiciendis illo
-      </p>
+        <p className="text-xl text-muted-foreground pt-4 pb-8">
+          Real voices. Real results. See how <b>Placementor</b> is transforming
+          interview prep.
+        </p>
+      </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-4 sm:block columns-2  lg:columns-3 lg:gap-6 mx-auto space-y-4 lg:space-y-6">
         {testimonials.map(({ image, name, userName, comment }) => (

@@ -1,4 +1,4 @@
-import { LogoIcon } from "./Icons";
+
 
 function Footer() {
   return (
@@ -10,9 +10,8 @@ function Footer() {
           <a
             rel="noreferrer noopener"
             href="/"
-            className="font-bold text-xl flex"
+            className="font-bold text-5xl flex"
           >
-            <LogoIcon />
             PlaceMentor
           </a>
         </div>
@@ -46,39 +45,6 @@ function Footer() {
               className="opacity-60 hover:opacity-100"
             >
               Dribbble
-            </a>
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-2">
-          <h3 className="font-bold text-lg">Platforms</h3>
-          <div>
-            <a
-              rel="noreferrer noopener"
-              href="#"
-              className="opacity-60 hover:opacity-100"
-            >
-              Web
-            </a>
-          </div>
-
-          <div>
-            <a
-              rel="noreferrer noopener"
-              href="#"
-              className="opacity-60 hover:opacity-100"
-            >
-              Mobile
-            </a>
-          </div>
-
-          <div>
-            <a
-              rel="noreferrer noopener"
-              href="#"
-              className="opacity-60 hover:opacity-100"
-            >
-              Desktop
             </a>
           </div>
         </div>
@@ -156,10 +122,10 @@ function Footer() {
           <a
             rel="noreferrer noopener"
             target="_blank"
-            href="https://www.linkedin.com/in/leopoldo-miranda/"
+            href="https://github.com/tejasgadge2504/PlaceMentor"
             className="text-primary transition-all border-primary hover:border-b-2"
           >
-            Leo Miranda
+            Team INSPIRE
           </a>
         </h3>
       </section>

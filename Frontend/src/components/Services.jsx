@@ -1,4 +1,3 @@
-
 import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { MagnifierIcon, WalletIcon, ChartIcon } from "./Icons";
 import cubeLeg from "../assets/cube-leg.png";
@@ -13,13 +12,13 @@ const serviceList = [
   {
     title: "Real-Time Feedback",
     description:
-      "Instant AI feedback to refine your answers and boost interview confidence",
+      "Instant AI feedback to refine your answers and boost interview confidence.",
     icon: <WalletIcon />,
   },
   {
-    title: "Task Automation",
+    title: "Resume Parsing Service",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi nesciunt est nostrum omnis ab sapiente.",
+      "Extracts structured candidate data from uploaded resumes to personalize the interview experience.",
     icon: <MagnifierIcon />,
   },
 ];
@@ -27,8 +26,9 @@ const serviceList = [
 function Services() {
   return (
     <section className="container py-24 sm:py-32">
-      <div className="grid lg:grid-cols-[1fr,1fr] gap-8 place-items-center">
-        <div>
+      <div className="flex flex-col lg:flex-row gap-12 items-center justify-between">
+        {/* Text Content */}
+        <div className="flex-1">
           <h2 className="text-3xl md:text-4xl font-bold">
             <span className="bg-gradient-to-b from-primary/60 to-primary text-[#20B256] bg-clip-text">
               Comprehensive{" "}
@@ -59,11 +59,14 @@ function Services() {
           </div>
         </div>
 
-        <img
-          src={cubeLeg}
-          className="w-[300px] md:w-[500px] lg:w-[600px] object-contain"
-          alt="About services"
-        />
+        {/* Image */}
+        <div className="flex-1 flex justify-center">
+          <img
+            src={cubeLeg}
+            className="w-[300px] md:w-[500px] lg:w-[600px] object-contain"
+            alt="About services"
+          />
+        </div>
       </div>
     </section>
   );

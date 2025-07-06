@@ -7,34 +7,41 @@ import {
 
 const FAQList = [
   {
-    question: "Is this template free?",
-    answer: "Yes. It is a free ChadcnUI template.",
+    question: "What is Placementor?",
+    answer:
+      "Placementor is an AI-powered platform designed to simulate real interview scenarios, generate personalized questions, and provide detailed feedback to help users improve their interview performance.",
     value: "item-1",
   },
   {
-    question: "Lorem ipsum dolor sit amet consectetur adipisicing elit?",
+    question: "How does Placementor generate interview questions?",
     answer:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint labore quidem quam? Consectetur sapiente iste rerum reiciendis animi nihil nostrum sit quo, modi quod.",
+      "Placementor uses advanced AI agents, including Gemini within the Agno framework, to analyze your resume and chosen role to create a customized interview question set based on industry standards.",
     value: "item-2",
   },
   {
-    question:
-      "Lorem ipsum dolor sit amet  Consectetur natus dolores minus quibusdam?",
+    question: "Can I upload my resume? What happens after that?",
     answer:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore qui nostrum reiciendis veritatis necessitatibus maxime quis ipsa vitae cumque quo?",
+      "Yes. When you upload your resume, Placementor parses it to extract key information such as skills, projects, and experience to tailor the interview simulation accordingly.",
     value: "item-3",
   },
   {
-    question: "Lorem ipsum dolor sit amet, consectetur adipisicing elit?",
-    answer: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    question: "How does the feedback system work?",
+    answer:
+      "After each mock interview, Placementor’s Feedback Agent evaluates your spoken responses on clarity, structure, and relevance, and gives you a score along with actionable suggestions for improvement.",
     value: "item-4",
   },
   {
     question:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur natus?",
+      "Is Placementor suitable for both freshers and experienced professionals?",
     answer:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint labore quidem quam? Consectetur sapiente iste rerum reiciendis animi nihil nostrum sit quo, modi quod.",
+      "Absolutely. Whether you're a fresher preparing for your first job or an experienced professional switching roles, Placementor adapts to your profile and goals.",
     value: "item-5",
+  },
+  {
+    question: "Can I reattempt the same interview questions for practice?",
+    answer:
+      "Yes, Placementor allows you to retry questions as many times as you'd like. The feedback agent updates its evaluation based on each new response, helping you track your improvement over time.",
+    value: "item-6",
   },
 ];
 

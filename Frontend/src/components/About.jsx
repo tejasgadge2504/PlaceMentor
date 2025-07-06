@@ -1,6 +1,6 @@
 // import React from "react";
 import Statistics from "./Statistics";
-import pilot  from "../assets/pilot.png";
+import pilot  from "../assets/about.jpg";
 
 function About() {
   return (

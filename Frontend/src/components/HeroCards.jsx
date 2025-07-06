@@ -2,6 +2,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Badge } from "./ui/badge";
 import { Button } from "@/components/ui/button";
 import image from "../assets/teaminspire.png";
+import { useNavigate } from "react-router-dom";
 
 import {
   Card,
@@ -15,6 +16,11 @@ import { Check } from "lucide-react";
 import { LightBulbIcon } from "./Icons";
 
 function HeroCards() {
+  const navigate = useNavigate();
+  const nextPage = () => {
+    navigate("/resume-summary");
+  };
+
   return (
     <div className="hidden lg:flex flex-row flex-wrap gap-8 relative w-[700px] h-[500px]">
       {/* Testimonial */}
@@ -89,7 +95,9 @@ function HeroCards() {
         </CardHeader>
 
         <CardContent>
-          <Button className="w-full">Start Free Trial</Button>
+          <Button className="w-full md:w-full cursor-pointer" onClick={nextPage}>
+            Start Free Trial
+          </Button>
         </CardContent>
 
         <hr className="w-4/5 m-auto mb-4" />
