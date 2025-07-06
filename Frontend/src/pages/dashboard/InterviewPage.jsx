@@ -36,7 +36,7 @@ const InterviewPage = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        "http://127.0.0.1:5000/evaluate-answer",
+        "https://placementor-backend.onrender.com/evaluate-answer",
         {
           question: questionData.question,
           user_answer: userAnswer,
@@ -69,7 +69,7 @@ const InterviewPage = () => {
         throw new Error("No InterviewPlan found in localStorage.");
       }
       const parsedPlan = JSON.parse(storedPlan);
-      const response = await axios.post("http://127.0.0.1:5000/get-question", {
+      const response = await axios.post("https://placementor-backend.onrender.com/get-question", {
         sr_no: Qcount,
         interview_plan: {
           interview_plan: parsedPlan,
@@ -97,7 +97,7 @@ const InterviewPage = () => {
       }
       const parsedPlan = JSON.parse(storedPlan);
       const newCount = Qcount + 1;
-      const response = await axios.post("http://127.0.0.1:5000/get-question", {
+      const response = await axios.post("https://placementor-backend.onrender.com/get-question", {
         sr_no: newCount,
         interview_plan: {
           interview_plan: parsedPlan,
