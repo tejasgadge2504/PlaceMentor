@@ -1,17 +1,19 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
 import axios from "axios";
 
 const InterviewPage = () => {
   const location = useLocation();
-  const questionData = location.state; // ✅ Received from navigate state
-
-  const [userAnswer, setUserAnswer] = useState(""); // ✅ Final saved answer
-  const [loading, setLoading] = useState(false); // 🔄 Loading state for submit button
-  const [feedbackRes, setFeedbackRes] = useState(null); // ✅ Store API response properly
+  const questionData = location.state;
+  const [userAnswer, setUserAnswer] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [feedbackRes, setFeedbackRes] = useState(null);
 
   const {
     transcript,
@@ -21,17 +23,23 @@ const InterviewPage = () => {
   } = useSpeechRecognition();
 
   if (!browserSupportsSpeechRecognition) {
-    return <div className="text-center mt-10">Your browser does not support speech recognition.</div>;
+    return (
+      <div className="text-center mt-10">
+        Your browser does not support speech recognition.
+      </div>
+    );
   }
 
   const feedbackAnalysis = async () => {
     setLoading(true);
     try {
-      const response = await axios.post("http://127.0.0.1:5000/evaluate-answer", {
-        question: questionData.question,
-        user_answer: userAnswer,
-      });
-
+      const response = await axios.post(
+        "http://127.0.0.1:5000/evaluate-answer",
+        {
+          question: questionData.question,
+          user_answer: userAnswer,
+        }
+      );
       setFeedbackRes(response.data);
       console.log("Feedback Response:", response.data);
     } catch (error) {
@@ -42,13 +50,13 @@ const InterviewPage = () => {
   };
 
   const handleStartListening = () => {
-    resetTranscript(); // Clear previous
+    resetTranscript();
     SpeechRecognition.startListening({ continuous: true });
   };
 
   const handleStopListening = () => {
     SpeechRecognition.stopListening();
-    setUserAnswer(transcript); // Save transcript to variable
+    setUserAnswer(transcript);
   };
 
   if (!questionData || !questionData.question) {
@@ -56,88 +64,127 @@ const InterviewPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#f4f6fa] flex flex-col items-center justify-center p-4 space-y-6">
-      {/* 🧾 Question Card */}
-      <Card className="max-w-2xl w-full shadow-xl">
-        <CardContent className="space-y-4">
-          <h1 className="text-2xl font-semibold text-center">Interview Question</h1>
-          <p className="text-lg text-gray-800">
-            <strong>Question:</strong> {questionData.question}
-          </p>
-          <div className="text-sm text-gray-500">
-            <p><strong>Topic:</strong> {questionData.topic}</p>
-            <p><strong>Difficulty:</strong> {questionData.difficulty}</p>
-            <p><strong>Why this question:</strong> {questionData.why_this_question}</p>
-          </div>
-        </CardContent>
-      </Card>
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-blue-50 pt-10">
+      <div className="flex flex-col lg:flex-row gap-6 w-full max-w-6xl mx-auto p-6">
+        <div className="w-full lg:w-1/2 space-y-6">
+          <Card className="w-full shadow-lg rounded-xl">
+            <CardContent className="p-6 space-y-6">
+              <h1 className="text-2xl font-bold text-center text-gray-800">
+                Interview Question
+              </h1>
+              <div className="space-y-4">
+                <p className="text-lg text-gray-800 font-medium">
+                  <strong>Question:</strong> {questionData.question}
+                </p>
+                <div className="flex gap-2">
+                  <span className="bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded">
+                    Topic: {questionData.topic}
+                  </span>
+                  <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">
+                    Difficulty: {questionData.difficulty}
+                  </span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
 
-      {/* 🎙️ Microphone Controls */}
-      <div className="flex gap-4">
-        <Button onClick={handleStartListening} disabled={listening}>
-          🎤 Start Speaking
-        </Button>
-        <Button onClick={handleStopListening} variant="destructive" disabled={!listening}>
-          🛑 Stop & Save Answer
-        </Button>
-      </div>
-
-      {/* 🗣️ Transcript Display */}
-      <div className="max-w-2xl w-full mt-4 bg-white p-4 rounded shadow">
-        <h2 className="font-semibold text-lg mb-2">Your Spoken Answer:</h2>
-        <p className="text-gray-700 whitespace-pre-wrap">{transcript || "Start speaking to see transcript..."}</p>
-      </div>
-
-      {/* ✅ Final Saved Answer */}
-      {userAnswer && (
-        <>
-          <div className="max-w-2xl w-full bg-green-50 p-4 rounded border border-green-300 mt-2">
-            <h2 className="font-semibold text-green-700">Saved Answer:</h2>
-            <p className="text-green-800 whitespace-pre-wrap">{userAnswer}</p>
+          <div className="bg-white p-6 rounded-xl shadow-md">
+            <h2 className="font-semibold text-xl mb-4 text-gray-800">
+              Your Spoken Answer:
+            </h2>
+            <p className="text-gray-700 whitespace-pre-wrap p-4 bg-gray-50 rounded-lg">
+              {transcript || "Start speaking to see transcript..."}
+            </p>
           </div>
 
-          {/* 🚀 Submit Button */}
-          <div className="submit-answer">
-            <Button onClick={feedbackAnalysis} disabled={listening || loading}>
-              {loading ? "Submitting..." : "Submit Answer"}
+          {userAnswer && (
+            <div className="bg-green-50 p-6 rounded-xl border border-green-300">
+              <h2 className="font-semibold text-xl text-green-800 mb-2">
+                Saved Answer:
+              </h2>
+              <p className="text-green-800 whitespace-pre-wrap p-4 bg-green-100 rounded-lg">
+                {userAnswer}
+              </p>
+            </div>
+          )}
+
+          <div className="flex justify-center gap-6 mt-6">
+            <Button
+              onClick={handleStartListening}
+              disabled={listening}
+              className="h-12 text-lg bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700"
+            >
+              🎤 Start Speaking
+            </Button>
+            <Button
+              onClick={handleStopListening}
+              variant="destructive"
+              disabled={!listening}
+              className="h-12 text-lg bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700"
+            >
+              🛑 Stop & Save Answer
             </Button>
           </div>
-        </>
-      )}
 
-      {/* 🧠 Feedback Results */}
-      {feedbackRes && (
-        <div className="max-w-2xl w-full mt-6 bg-blue-50 p-6 rounded-lg border border-blue-300 shadow">
-          <h2 className="text-xl font-semibold text-blue-700 mb-4">AI Feedback Summary</h2>
-
-          {feedbackRes.correctedAnswer ? (
-            <>
-              <p className="mb-2 font-medium">✅ <strong>Corrected Answer:</strong></p>
-              <p className="text-gray-800 mb-4 whitespace-pre-wrap">{feedbackRes.correctedAnswer}</p>
-            </>
-          ) : (
-            <p className="text-gray-500">No corrected answer received.</p>
+          {userAnswer && (
+            <div className="flex justify-center mt-6">
+              <Button
+                onClick={feedbackAnalysis}
+                disabled={listening || loading}
+                className="h-12 text-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+              >
+                {loading ? "Submitting..." : "Submit Answer"}
+              </Button>
+            </div>
           )}
-
-          {feedbackRes.feedback ? (
-            <>
-              <p className="mb-2 font-medium">🧠 <strong>Feedback:</strong></p>
-              <p className="text-gray-800 mb-4 whitespace-pre-wrap">{feedbackRes.feedback}</p>
-            </>
-          ) : (
-            <p className="text-gray-500">No feedback provided.</p>
-          )}
-
-          <p className="text-sm text-gray-700">
-            <strong>Repeat Required:</strong>{" "}
-            {feedbackRes.repeatStatus !== undefined ? (feedbackRes.repeatStatus ? "Yes" : "No") : "N/A"}
-          </p>
-
-          <p className="text-sm text-gray-700">
-            <strong>Score:</strong> {feedbackRes.score !== undefined ? `${feedbackRes.score} / 10` : "N/A"}
-          </p>
         </div>
-      )}
+
+        {feedbackRes && (
+          <div className="w-full lg:w-1/2 bg-blue-50 p-6 rounded-xl border border-blue-300 shadow-md">
+            <h2 className="text-2xl font-bold text-blue-800 mb-6">
+              AI Feedback Summary
+            </h2>
+            <div className="space-y-4">
+              {feedbackRes.correctedAnswer && (
+                <div className="bg-white p-4 rounded-lg">
+                  <p className="mb-2 font-semibold text-lg text-blue-700">
+                    ✅ Corrected Answer:
+                  </p>
+                  <p className="text-gray-800 whitespace-pre-wrap">
+                    {feedbackRes.correctedAnswer}
+                  </p>
+                </div>
+              )}
+              {feedbackRes.feedback && (
+                <div className="bg-white p-4 rounded-lg">
+                  <p className="mb-2 font-semibold text-lg text-blue-700">
+                    🧠 Feedback:
+                  </p>
+                  <p className="text-gray-800 whitespace-pre-wrap">
+                    {feedbackRes.feedback}
+                  </p>
+                </div>
+              )}
+              <div className="grid grid-cols-1 gap-4 text-gray-700">
+                <p className="bg-white p-4 rounded-lg">
+                  <strong>Repeat Required:</strong>{" "}
+                  {feedbackRes.repeatStatus !== undefined
+                    ? feedbackRes.repeatStatus
+                      ? "Yes"
+                      : "No"
+                    : "N/A"}
+                </p>
+                <p className="bg-white p-4 rounded-lg">
+                  <strong>Score:</strong>{" "}
+                  {feedbackRes.score !== undefined
+                    ? `${feedbackRes.score} / 10`
+                    : "N/A"}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
