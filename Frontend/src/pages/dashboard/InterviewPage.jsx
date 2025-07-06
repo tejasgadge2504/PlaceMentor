@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import SpeechRecognition, {
@@ -14,6 +14,8 @@ const InterviewPage = () => {
   const [userAnswer, setUserAnswer] = useState("");
   const [loading, setLoading] = useState(false);
   const [feedbackRes, setFeedbackRes] = useState(null);
+  const navigate = useNavigate();
+  const Qcount = parseInt(localStorage.getItem("QuestionCount"), 10);
 
   const {
     transcript,
@@ -57,6 +59,64 @@ const InterviewPage = () => {
   const handleStopListening = () => {
     SpeechRecognition.stopListening();
     setUserAnswer(transcript);
+  };
+
+  const repeatQuestion =async()=>{
+   setLoading(true);
+    try {
+      const storedPlan = localStorage.getItem("InterviewPlan");
+      if (!storedPlan) {
+        throw new Error("No InterviewPlan found in localStorage.");
+      }
+      const parsedPlan = JSON.parse(storedPlan);
+      const response = await axios.post("http://127.0.0.1:5000/get-question", {
+        sr_no: Qcount,
+        interview_plan: {
+          interview_plan: parsedPlan,
+        },
+      });
+      navigate("/interview-page", { state: response.data });
+   // Wait a moment then reload
+    setTimeout(() => {
+      window.location.reload();
+    }, 100); // 100ms delay to allow navigation to complete
+
+    } catch (error) {
+      console.error("Error starting interview:", error.message || error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const nextQuestion =async()=>{
+   setLoading(true);
+    try {
+      const storedPlan = localStorage.getItem("InterviewPlan");
+      if (!storedPlan) {
+        throw new Error("No InterviewPlan found in localStorage.");
+      }
+      const parsedPlan = JSON.parse(storedPlan);
+      const newCount = Qcount + 1;
+      const response = await axios.post("http://127.0.0.1:5000/get-question", {
+        sr_no: newCount,
+        interview_plan: {
+          interview_plan: parsedPlan,
+        },
+      });
+
+      localStorage.setItem("QuestionCount", newCount.toString());
+      navigate("/interview-page", { state: response.data });
+
+      // Wait a moment then reload
+    setTimeout(() => {
+      window.location.reload();
+    }, 100); // 100ms delay to allow navigation to complete
+
+    } catch (error) {
+      console.error("Error starting interview:", error.message || error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (!questionData || !questionData.question) {
@@ -145,16 +205,6 @@ const InterviewPage = () => {
               AI Feedback Summary
             </h2>
             <div className="space-y-4">
-              {feedbackRes.correctedAnswer && (
-                <div className="bg-white p-4 rounded-lg">
-                  <p className="mb-2 font-semibold text-lg text-blue-700">
-                    ✅ Corrected Answer:
-                  </p>
-                  <p className="text-gray-800 whitespace-pre-wrap">
-                    {feedbackRes.correctedAnswer}
-                  </p>
-                </div>
-              )}
               {feedbackRes.feedback && (
                 <div className="bg-white p-4 rounded-lg">
                   <p className="mb-2 font-semibold text-lg text-blue-700">
@@ -162,6 +212,16 @@ const InterviewPage = () => {
                   </p>
                   <p className="text-gray-800 whitespace-pre-wrap">
                     {feedbackRes.feedback}
+                  </p>
+                </div>
+              )}
+              {feedbackRes.correctedAnswer && (
+                <div className="bg-white p-4 rounded-lg">
+                  <p className="mb-2 font-semibold text-lg text-blue-700">
+                    ✅ Corrected Answer:
+                  </p>
+                  <p className="text-gray-800 whitespace-pre-wrap">
+                    {feedbackRes.correctedAnswer}
                   </p>
                 </div>
               )}
@@ -181,6 +241,24 @@ const InterviewPage = () => {
                     : "N/A"}
                 </p>
               </div>
+              <div className="flex gap-4 justify-around">
+                <Button
+                
+                onClick={repeatQuestion}
+                disabled={feedbackRes.repeatStatus && feedbackRes.score>=4 ? true:false}
+                className="cursor-pointer h-12 text-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+              >
+                Repeat
+              </Button>
+              <Button
+                onClick={nextQuestion}
+                disabled={feedbackRes.repeatStatus&& feedbackRes.score>=4 ? false:true}
+                className="cursor-pointer h-12 text-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+              >
+                Next Question
+              </Button>
+              </div>
+              <p className="text-red-500">* you can move to next question only when score if greater than equals to 6</p>
             </div>
           </div>
         )}
