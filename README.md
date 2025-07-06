@@ -1,10 +1,11 @@
 # Placementor
 
-Placementor is a comprehensive interview preparation platform designed to help users practice and improve their interview skills. This project was developed as part of a hackathon and leverages advanced AI agents to provide a realistic interview experience and constructive feedback.
+Placementor is an advanced interview preparation platform designed to assist users in practicing and refining their interview skills. Developed during a hackathon, this project utilizes sophisticated AI agents to simulate realistic interview scenarios and provide actionable feedback.
 
 ## Table of Contents
 
 - [Features](#features)
+- [Tech Stack](#tech-stack)
 - [Agents](#agents)
   - [Feedback Agent](#feedback-agent)
   - [Question Fetcher](#question-fetcher)
@@ -15,14 +16,22 @@ Placementor is a comprehensive interview preparation platform designed to help u
 - [Screenshots](#screenshots)
 - [Contributing](#contributing)
 - [License](#license)
-- [Contact](#contact)
+- [Developed By](#developed-by)
 
 ## Features
 
-- **Resume Upload and Parsing**: Users can upload their resumes, which are then parsed to extract relevant information.
-- **Interview Simulation**: Users can select a company, role, and interview round to generate a tailored set of interview questions.
-- **Speech Recognition**: Users can practice answering questions using their voice.
-- **Feedback and Evaluation**: AI agents evaluate user responses and provide detailed feedback, including scores and suggestions for improvement.
+- **Resume Upload and Parsing**: Users upload their resumes, which are parsed to extract relevant information.
+- **Interview Simulation**: Users select a company, role, and interview round to generate a tailored set of interview questions.
+- **Speech Recognition**: Users practice answering questions using voice input.
+- **Feedback and Evaluation**: AI agents evaluate user responses and provide detailed feedback, including scores and improvement suggestions.
+
+## Tech Stack
+
+- **Frontend**: React.js, Tailwind CSS, Axios
+- **Backend**: Python, Flask
+- **AI and NLP**: Agno Framework, Gemini, SpeechRecognition
+- **Data Handling**: JSON
+- **Version Control**: Git
 
 ## Agents
 
@@ -30,32 +39,34 @@ Placementor is a comprehensive interview preparation platform designed to help u
 
 - **Purpose**: Evaluates user responses to interview questions and provides constructive feedback.
 - **Logic**:
-  - Utilizes the Gemini model to analyze user answers based on structure, clarity, relevance, and impact.
-  - Provides a score out of 10, detailed feedback, a corrected version of the answer, and a recommendation on whether the user should repeat the question.
-  - Outputs the evaluation in a structured JSON format.
+  - Utilizes the Gemini model within the Agno framework to analyze user answers based on structure, clarity, relevance, and impact.
+  - Constructs a prompt that instructs the AI to evaluate answers on a scale of 1 to 10, provide feedback, suggest improvements, and decide if the user should repeat the question.
+  - Processes the AI response to extract and return a structured JSON format containing the score, feedback, corrected answer, and repeat status.
 
 ### Question Fetcher
 
 - **Purpose**: Retrieves specific questions from an interview plan based on the serial number.
 - **Logic**:
   - Takes an interview plan and a serial number as inputs.
-  - Searches through the interview plan to find and return the question corresponding to the given serial number.
-  - Returns an error if the question is not found.
+  - Converts the serial number to a string to match the format in the JSON data.
+  - Iterates through the interview plan to find and return the question corresponding to the given serial number.
+  - Returns an error if the question is not found, ensuring robustness in handling missing data.
 
 ### Interview Planner
 
 - **Purpose**: Generates a structured interview plan based on the user's resume, target company, role, and interview round.
 - **Logic**:
-  - Uses the Gemini model to create a list of 10 interview questions tailored to the user's selected parameters.
-  - Questions are structured to simulate a real interview, starting with introductory questions and gradually increasing in difficulty.
-  - Outputs the interview plan in a structured JSON format.
+  - Uses the Gemini model within the Agno framework to create a list of interview questions tailored to the user's selected parameters.
+  - Constructs a detailed prompt that guides the AI to generate questions simulating a real interview, starting with introductory questions and gradually increasing in difficulty.
+  - Outputs the interview plan in a structured JSON format, ensuring easy integration with other components.
 
 ### Resume Parser
 
 - **Purpose**: Extracts structured information from a user's uploaded resume.
 - **Logic**:
-  - Uses the Gemini model to parse the resume and extract key details such as full name, email, phone, skills, projects, education, and work experience.
-  - Outputs the extracted information in a structured JSON format.
+  - Uses the Gemini model within the Agno framework to parse the resume and extract key details such as full name, email, phone, skills, projects, education, and work experience.
+  - Constructs a prompt that instructs the AI to return the extracted information in a structured JSON format.
+  - Processes the AI response to extract and return the relevant information in the specified format.
 
 ## Installation
 
@@ -96,6 +107,7 @@ We welcome contributions to Placementor! If you have any ideas, suggestions, or 
 
 This project is licensed under the MIT License. See the LICENSE file for more details.
 
-## Contact
+## Developed By
 
-For any inquiries or feedback, please contact us at your-email@example.com.
+- [Tejas Gadge](https://github.com/tejasgadge2504)
+- [Anisha Shankar](https://github.com/hahaanisha)
