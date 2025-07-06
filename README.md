@@ -2,7 +2,7 @@
   <img src="Readme_img/placementor_logo.png" alt="Demo" width="400" />
 </p>
 
-# About
+## About
 
 Placementor is an advanced interview preparation platform designed to assist users in practicing and refining their interview skills. Developed during a hackathon, this project utilizes sophisticated AI agents to simulate realistic interview scenarios and provide actionable feedback.
 
