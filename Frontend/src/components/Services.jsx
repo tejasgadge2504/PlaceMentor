@@ -5,15 +5,15 @@ import cubeLeg from "../assets/cube-leg.png";
 
 const serviceList = [
   {
-    title: "Code Collaboration",
+    title: "Personalized Interview Preparation",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi nesciunt est nostrum omnis ab sapiente.",
+      "Tailored AI-driven mock interviews to match your target job role and industry.",
     icon: <ChartIcon />,
   },
   {
-    title: "Project Management",
+    title: "Real-Time Feedback",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi nesciunt est nostrum omnis ab sapiente.",
+      "Instant AI feedback to refine your answers and boost interview confidence",
     icon: <WalletIcon />,
   },
   {
@@ -31,14 +31,13 @@ function Services() {
         <div>
           <h2 className="text-3xl md:text-4xl font-bold">
             <span className="bg-gradient-to-b from-primary/60 to-primary text-[#20B256] bg-clip-text">
-              Client-Centric{" "}
+              Comprehensive{" "}
             </span>
-            Services
+            Interview Preparation Services
           </h2>
 
           <p className="text-muted-foreground text-xl mt-4 mb-8">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis
-            dolor.
+            Tailored Solutions to Elevate Your Interview Skills and Confidence
           </p>
 
           <div className="flex flex-col gap-8">

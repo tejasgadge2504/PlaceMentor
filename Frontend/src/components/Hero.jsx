@@ -31,7 +31,7 @@ function Hero() {
 
           <a
             rel="noreferrer noopener"
-            href="https://github.com/leoMirandaa/shadcn-landing-page.git"
+            href="https://github.com/tejasgadge2504/PlaceMentor"
             target="_blank"
             className={`w-full md:w-1/3 ${buttonVariants({
               variant: "outline",
