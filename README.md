@@ -106,7 +106,25 @@ Placementor is an advanced interview preparation platform designed to assist use
 
 ## Screenshots
 
-(This section is reserved for adding screenshots of the application in action.)
+<table>
+  <tr>
+    <td align="center">
+      <img src="Readme_img/readme1.png" alt="Demo 1" width="500" />
+    </td>
+    <td align="center">
+      <img src="Readme_img/readme2.png" alt="Demo 2" width="500" />
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="Readme_img/readme3.png" alt="Demo 3" width="500" />
+    </td>
+    <td align="center">
+      <img src="Readme_img/readme4.png" alt="Demo 4" width="500" />
+    </td>
+  </tr>
+</table>
+
 
 ## Contributing
 
