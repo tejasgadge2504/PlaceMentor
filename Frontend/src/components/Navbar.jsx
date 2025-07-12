@@ -19,16 +19,28 @@ import { LogoIcon } from "./Icons";
 
 const routeList = [
   {
+    href: "#about",
+    label: "About",
+  },
+  {
     href: "#features",
     label: "Features",
+  },
+  {
+    href: "#cta",
+    label: "Demo",
   },
   {
     href: "#testimonials",
     label: "Testimonials",
   },
   {
-    href: "#pricing",
-    label: "Pricing",
+    href: "#team",
+    label: "Team",
+  },
+  {
+    href: "#newsletter",
+    label: "Newsletter",
   },
   {
     href: "#faq",
